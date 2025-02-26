@@ -10,7 +10,8 @@ const AddComponent = () => {
     const formData = {itemName:item, itemDiscription:discription};
     const response = await axios.post("http://localhost:7000/addNewItem", formData);
     console.log(response.data);
-    alert(response.data.msg)    
+    alert(response.data.msg);
+        
   }
 
   return (
