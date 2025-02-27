@@ -29,8 +29,16 @@ async function addNewItem(req,res){
 }
 
 
-function updateItem(req,res){
+async function updateItem(req,res){
+    console.log(req.params.ID, req.body);
+    try {
+        updateTask = await List.findByIdAndUpdate(req.params.ID, req.body, {new:true})
+        if (!updateTask) return res.status(404).send({ message: 'Task not found',success:false });
+        res.status(200).send({msg:'task updated successfully', success:true})
 
+    } catch (error) {
+        res.status(500).send({msg:'server error',error:error})
+    }
 }
 
 async function deleteItem(req,res){
